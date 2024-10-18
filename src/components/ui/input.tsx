@@ -8,12 +8,12 @@ interface CustomInputProps {
 
 const CustomInput: React.FC<CustomInputProps> = ({ title, placeholder }) => {
   return (
-    <div className="mx-2 my-2">
+    <div className="my-2">
       <label htmlFor={title}>{title}</label>
       <br />
-      <div className="flex flex-row items-center rounded-sm border border-[#cccccc] p-1">
+      <div className="flex flex-row items-center border-2 w-[70%] rounded border-[#cccccc] p-1">
         {/* Use the imported Location icon */}
-        <Location className="h-5 w-5 mr-2" />
+        <Location className="h-5 w-5 mr-2" color="#cccccc" />
 
         <input
           className="flex-1 p-1 border-none focus:outline-none"

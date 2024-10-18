@@ -1,6 +1,24 @@
+@import url("general-sans.css");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  font-family: GeneralSans-Regular;
+}
+
+h1 {
+  font-weight: bolder;
+  color: black;
+}
+
+#error-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
 
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -37,6 +55,7 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+
 }
 
 button {
