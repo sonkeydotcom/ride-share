@@ -1,3 +1,4 @@
+import { ArrowLeft } from "iconsax-react";
 import { useState } from "react";
 
 // Static instructions for the quiz process
@@ -105,83 +106,113 @@ const QuizPage = () => {
   };
 
   return (
-    <div>
+    <div className="p-10">
       {/* Quiz Introduction */}
-      {!isQuizStarted ? (
-        <div>
-          <h1>
-            We have said a lot already, time for your quiz, and we hope you are
-            set, 'cause we are!
-          </h1>
-          <p>A short, exciting, unique quiz awaits you.</p>
-          <button onClick={startQuiz}>Take your quiz</button>
-        </div>
-      ) : isQuizCompleted ? (
+
+      <div>
+        <h1>
+          We have said a lot already, time for your quiz, and we hope you are
+          set, 'cause we are!
+        </h1>
+        <p>A short, exciting, unique quiz awaits you.</p>
+        <button onClick={startQuiz}>Take your quiz</button>
+      </div>
+      {isQuizCompleted && (
         // Display completion message when quiz is done
         <QuizCompletion
           selectedAnswers={selectedAnswers}
           questions={questions}
         />
-      ) : (
-        // Quiz Layout
-        <div>
-          <div className="flex flex-row gap-4">
-            {how.map((item, index) => (
-              <div key={index} className="w-1/2">
-                <h1>{index + 1}.</h1>
-                <h1>{item.title}</h1>
-                <p>{item.text}</p>
-              </div>
-            ))}
+      )}
+
+      <div>
+        <div className="flex flex-row gap-4">
+          {how.map((item, index) => (
+            <div key={index} className="w-1/2">
+              <h1>{index + 1}.</h1>
+              <h1>{item.title}</h1>
+              <p>{item.text}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Current Quiz Question */}
+        <div className="rounded-lg border-2 w-full flex justify-between py-10 bg-[#FFFFF4]">
+          {/* Left Section - Images in a column */}
+          <div className="flex flex-col justify-between gap-10">
+            <div>
+              <img src="/Headset.png" alt="Headset" className="w-24 h-24" />
+            </div>
+            <div>
+              <img
+                src="/styleorange.png"
+                alt="Style Orange"
+                className="w-24 h-24"
+              />
+            </div>
           </div>
 
-          {/* Progress Bar */}
-          <div className="w-full bg-gray-200 rounded-full h-4 my-4">
-            <div
-              className="bg-blue-600 h-4 rounded-full"
-              style={{ width: `${progress}%` }}
-            ></div>
-          </div>
+          {/* Middle Section - Question */}
+          <div className=" bg-[#FFFFF4]">
+            {/* Progress Bar */}
+            <div className="w-full bg-gray-200 rounded-full h-4 my-4">
+              <div
+                className="bg-blue-600 h-4 rounded-full"
+                style={{ width: `${progress}%` }}
+              ></div>
+            </div>
 
-          {/* Current Quiz Question */}
-          <div className="rounded-lg border-2 w-full py-10 px-10">
-            <h1 className="text-center">
-              {currentQuestionIndex + 1}. {currentQuestion.question}
-            </h1>
+            {/* Current Quiz Question */}
+            <div className=" w-full py-10 px-10">
+              <h1 className="text-center text-lg">
+                {currentQuestion.question}
+              </h1>
 
-            {/* Alphabetical List of Answers */}
-            <ol type="a">
-              {currentQuestion.answers.map((answer, index) => (
-                <li
-                  key={index}
-                  className={`border rounded-lg p-2 m-2 cursor-pointer ${
-                    selectedAnswers[currentQuestionIndex] === answer
-                      ? "bg-blue-200" // Highlight selected answer
-                      : "bg-white"
-                  }`}
-                  onClick={() => handleAnswerSelect(answer)}
+              {/* Alphabetical List of Answers */}
+              <ol type="a">
+                {currentQuestion.answers.map((answer, index) => (
+                  <li
+                    key={index}
+                    className={`border rounded-lg p-2 m-2 cursor-pointer ${
+                      selectedAnswers[currentQuestionIndex] === answer &&
+                      "bg-blue-200"
+                    }`}
+                    onClick={() => handleAnswerSelect(answer)}
+                  >
+                    {answer}
+                  </li>
+                ))}
+              </ol>
+
+              <div className="flex gap-4 mt-4">
+                <button
+                  onClick={prevQuestion}
+                  disabled={currentQuestionIndex === 0}
+                  className="flex flex-row gap-2 justify-center content-center items-center"
                 >
-                  {answer}
-                </li>
-              ))}
-            </ol>
+                  <ArrowLeft size="32" color="#FF8A65" />
+                  Previous
+                </button>
+                <button onClick={nextQuestion}>
+                  {currentQuestionIndex === questions.length - 1
+                    ? "Finish"
+                    : "Next"}
+                </button>
+              </div>
+            </div>
+          </div>
 
-            <div className="flex gap-4 mt-4">
-              <button
-                onClick={prevQuestion}
-                disabled={currentQuestionIndex === 0}
-              >
-                Previous
-              </button>
-              <button onClick={nextQuestion}>
-                {currentQuestionIndex === questions.length - 1
-                  ? "Finish"
-                  : "Next"}
-              </button>
+          {/* Right Section - Images in a column */}
+          <div className="flex flex-col justify-between gap-10">
+            <div>
+              <img src="/kmgreen.png" alt="Green" className="w-24 h-24" />
+            </div>
+            <div>
+              <img src="/Nature.png" alt="Nature" className="w-24 h-24" />
             </div>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 };
