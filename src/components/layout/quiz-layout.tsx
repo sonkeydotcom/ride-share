@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom";
 import Footer from "../footer";
-import QuizHeader from "./quiz-header";
+// import QuizHeader from "./quiz-header";
 const QuizLayout = () => {
   return (
     <>
-      <QuizHeader />
+      {/* <QuizHeader /> */}
       <Outlet />
       <Footer />
     </>
