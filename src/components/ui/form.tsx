@@ -11,13 +11,6 @@ const Form = ({ isModalOpen, setIsModalOpen, setIsQuizCompleted }) => {
 
   return (
     <div>
-      <button
-        onClick={() => setIsModalOpen(true)}
-        className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
-      >
-        Open Form
-      </button>
-
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
@@ -79,7 +72,7 @@ const Form = ({ isModalOpen, setIsModalOpen, setIsQuizCompleted }) => {
             </button>
             <button
               type="submit"
-              className="px-4 py-2 w-1/2 text-sm bg-[#FFC727] text-black rounded-md hover:bg-blue-600 transition-colors"
+              className="px-4 py-2 w-1/2 text-sm bg-[#FFC727] text-black rounded-md hover:bg-gray-600 transition-colors"
             >
               View Results
             </button>

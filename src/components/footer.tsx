@@ -1,22 +1,25 @@
+import { FaFacebook, FaInstagram, FaTelegram } from "react-icons/fa";
+import { RiTwitterXFill } from "react-icons/ri";
+
 const data = {
   socials: [
     {
-      icon: "fab fa-facebook",
+      icon: <FaFacebook size={22} />,
       url: "https://www.facebook.com/rideshareapp",
       text: "Facebook",
     },
     {
-      icon: "fab fa-telegram",
+      icon: <FaTelegram size={22} />,
       url: "https://telegram.org",
       text: "Telegram",
     },
     {
-      icon: "fab fa-twitter",
+      icon: <RiTwitterXFill size={22} />,
       url: "https://twitter.com",
       text: "Twitter",
     },
     {
-      icon: "fab fa-instagram",
+      icon: <FaInstagram size={22} />,
       url: "https://instagram.com",
       text: "Instagram",
     },
@@ -66,36 +69,41 @@ const data = {
 const Footer = () => {
   return (
     <>
-      <div className="flex flex-1, flex-row justify-between mb-20 gap-4">
+      <div className="flex flex-1, flex-row justify-between mt-10 mb-15 gap-4">
         <div className="w-1/2">
-          <h3>Ride share</h3>
-          {data.socials.map((social) => (
-            <p>
+          <img
+            src="/logo.png"
+            alt="RideShare logo"
+            className="w-24 h-auto object-contain mb-5"
+          />
+          <div className="flex flex-row gap-2">
+            {data.socials.map((social) => (
               <a href={social.url} target="_blank" rel="noreferrer">
-                <i className={`text-2xl ${social.icon}`}></i>
+                {social.icon}
               </a>
-              {social.text}
-            </p>
-          ))}
+            ))}
+          </div>
         </div>
 
         <div>
           {data.links.map((link) => (
-            <p>
+            <p className="text-sm text-[#6C6A6A] m-1">
               <a href={link.url}>{link.text}</a>
             </p>
           ))}
         </div>
         <div>
           {data.legal.map((legal) => (
-            <p>
+            <p className="text-sm text-[#6C6A6A]">
               <a href={legal.url}>{legal.text}</a>
             </p>
           ))}
         </div>
       </div>
       <div>
-        <p>&copy; 2022 RideShare. All rights reserved.</p>
+        <p className="text-sm text-black">
+          &copy; 2022 RideShare. All rights reserved.
+        </p>
       </div>
     </>
   );

@@ -30,7 +30,7 @@ const Faq: React.FC = () => {
 
   return (
     <>
-      <h1 className="text-4xl font-bold">Frequently Asked Questions</h1>
+      <h1 className="text-3xl my-2 font-bold">Frequently Asked Questions</h1>
 
       {faqs.map(
         (
@@ -43,7 +43,7 @@ const Faq: React.FC = () => {
             className="my-4 cursor-pointer rounded border py-3 px-2" // Added cursor and padding for better UX
           >
             <div className="flex flex-row justify-between mb-2">
-              <h1 className="font-bold">{faq.question}</h1>
+              <h1 className="font-bold text-sm">{faq.question}</h1>
 
               {isOpen(index) ? (
                 <ArrowUp2 size="20" color="#000000" />
@@ -52,7 +52,7 @@ const Faq: React.FC = () => {
               )}
             </div>
             {openIndex === index && (
-              <p className="font-[#1E1E1E]">{faq.answer}</p>
+              <p className="text-sm font-[#1E1E1E]">{faq.answer}</p>
             )}{" "}
             {/* Show answer if index matches */}
           </div>
