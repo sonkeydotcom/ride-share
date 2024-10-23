@@ -53,7 +53,11 @@ const results = [
   },
 ];
 
-const Results = ({ score }) => {
+interface ResultsProps {
+  score: number;
+}
+
+const Results = ({ score }: ResultsProps) => {
   const [showShareModal, setShowShareModal] = useState(false);
 
   // Get the appropriate result based on score

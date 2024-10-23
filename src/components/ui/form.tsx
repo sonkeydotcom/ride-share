@@ -1,8 +1,18 @@
 import Modal from "./modal";
 
+interface FormProps {
+  isModalOpen: boolean;
+  setIsModalOpen: (isOpen: boolean) => void;
+  setIsQuizCompleted: (isQuizCompleted: boolean) => void;
+}
+
 // Example Form component using the Modal
-const Form = ({ isModalOpen, setIsModalOpen, setIsQuizCompleted }) => {
-  const handleSubmit = (e) => {
+const Form: React.FC<FormProps> = ({
+  isModalOpen,
+  setIsModalOpen,
+  setIsQuizCompleted,
+}) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Handle form submission
     setIsModalOpen(false);

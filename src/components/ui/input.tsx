@@ -4,6 +4,8 @@ import { Location } from "iconsax-react"; // Using this as the icon
 interface CustomInputProps {
   title: string; // Label for the input field
   placeholder: string; // Placeholder text for the input field
+  value: string; // Current value of the input field
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void; // Event handler for input field changes
 }
 
 const CustomInput: React.FC<CustomInputProps> = ({ title, placeholder }) => {

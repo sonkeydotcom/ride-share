@@ -69,7 +69,7 @@ const data = {
 const Footer = () => {
   return (
     <>
-      <div className="flex flex-1, flex-row justify-between mt-10 mb-15 gap-4">
+      <div className="flex flex-1, flex-col md:flex-row justify-between mt-10 mb-15 gap-4">
         <div className="w-1/2">
           <img
             src="/logo.png"
@@ -100,8 +100,8 @@ const Footer = () => {
           ))}
         </div>
       </div>
-      <div>
-        <p className="text-sm text-black">
+      <div className="mt-5 mb-2 text-center">
+        <p className=" text-black md:text-left md:text-sm">
           &copy; 2022 RideShare. All rights reserved.
         </p>
       </div>

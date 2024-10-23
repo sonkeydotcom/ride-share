@@ -3,18 +3,12 @@ import CustomInput from "../components/ui/input";
 import Button from "../components/ui/button";
 import RatesInfo from "../components/rates";
 import Faq from "../components/faq";
-import QuizBanner from "../components/quiz-banner";
 import Footer from "../components/footer";
 import Banner from "../components/ui/banner";
 
 const Index = () => {
   const [pickup, setPickup] = useState("");
   const [destination, setDestination] = useState("");
-
-  const handleEstimate = () => {
-    // Handle price estimation logic here
-    console.log("Calculating estimate for:", { pickup, destination });
-  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -54,12 +48,12 @@ const Index = () => {
                   value={destination}
                   onChange={(e) => setDestination(e.target.value)}
                 />
-                <Button title="See price estimate" onClick={handleEstimate} />
+                <Button title="See price estimate" />
               </div>
             </div>
 
             {/* Right Column - Image */}
-            <div className="relative h-64 lg:h-full">
+            <div className="hidden md:block relative h-64 lg:h-full">
               <img
                 src="/driver.svg"
                 className="w-full h-full object-contain"

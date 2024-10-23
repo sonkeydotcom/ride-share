@@ -1,6 +1,12 @@
-import { Share2, X } from "lucide-react";
+import { WhatsappShareButton } from "react-share";
 
-const Modal = ({ isOpen, onClose, children }) => {
+interface ShareModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
+}
+
+const Modal: React.FC<ShareModalProps> = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null;
   return (
     <>
@@ -10,7 +16,7 @@ const Modal = ({ isOpen, onClose, children }) => {
       />
       <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl">
         <div className="bg-white rounded-lg shadow-lg">
-          <div className="flex items-center justify-between p-4">
+          {/* <div className="flex items-center justify-between p-4">
             <div></div>
             <button
               onClick={onClose}
@@ -18,7 +24,7 @@ const Modal = ({ isOpen, onClose, children }) => {
             >
               <X className="w-5 h-5" />
             </button>
-          </div>
+          </div> */}
           <div className="p-4">{children}</div>
         </div>
       </div>
@@ -26,7 +32,19 @@ const Modal = ({ isOpen, onClose, children }) => {
   );
 };
 
-const SocialButton = ({ icon, name, color, onClick }) => (
+interface SocialButtonsProps {
+  icon: React.ReactNode;
+  name: string;
+  color: string;
+  onClick: () => void;
+}
+
+const SocialButton: React.FC<SocialButtonsProps> = ({
+  icon,
+  name,
+  color,
+  onClick,
+}) => (
   <button
     className="flex flex-row items-center gap-2 p-2 border rounded-lg hover:bg-gray-50 transition-colors w-full"
     onClick={onClick}
@@ -41,33 +59,66 @@ const SocialButton = ({ icon, name, color, onClick }) => (
   </button>
 );
 
-const ShareModal = ({ setShowShareModal, showShareModal }) => {
-  const handleShare = (platform) => {
+interface ShareProps {
+  setShowShareModal: (boolean: boolean) => void;
+  showShareModal: boolean;
+}
+
+const ShareModal: React.FC<ShareProps> = ({
+  setShowShareModal,
+  showShareModal,
+}) => {
+  const handleShare = (platform: string) => {
     console.log(`Sharing to ${platform}`);
     // Implement sharing logic here
+  };
+
+  const shareFile = async () => {
+    if (navigator.share) {
+      try {
+        const file = new File(["Hello, world!"], "sample.txt", {
+          type: "text/plain",
+        });
+
+        await navigator.share({
+          title: "My File",
+          text: "Check out this file!",
+          files: [file],
+        });
+        console.log("File shared successfully");
+      } catch (error) {
+        console.error("Error sharing file:", error);
+      }
+    } else {
+      alert("Web Share API is not supported in this browser.");
+    }
   };
 
   return (
     <Modal isOpen={showShareModal} onClose={() => setShowShareModal(false)}>
       <div className="flex flex-1 gap-8">
         {/* Left section - Preview */}
-        <div className="w-1/2 bg-gray-50 rounded-lg p-4 flex items-center justify-center">
-          <div className="text-center">
-            <Share2 className="w-12 h-12 mx-auto mb-4 text-gray-400" />
-            <p className="text-gray-500">Results Preview</p>
-          </div>
+        <div className="w-1/2 rounded-lg flex items-center justify-center">
+          <img src="/personality.png" />
         </div>
 
         {/* Right section - Share options */}
         <div className="w-1/2 p-4">
           <h1 className="text-2xl font-bold mb-2">Share on Socials</h1>
-          <p className="text-gray-600 mb-6">
+          <p className="text-gray-600 text-sm mb-6">
             Excite your followers, fans and friends by sharing your RideShare
             ride personality style
           </p>
 
           {/* 2x2 Grid for social buttons */}
           <div className="grid grid-cols-2 gap-4">
+            <WhatsappShareButton
+              title=" whatsapp"
+              url={"https://www.example.com"}
+            >
+              {" "}
+              k
+            </WhatsappShareButton>
             <SocialButton
               icon={
                 <svg
@@ -80,7 +131,7 @@ const ShareModal = ({ setShowShareModal, showShareModal }) => {
               }
               name="Facebook"
               color="#1877F2"
-              onClick={() => handleShare("facebook")}
+              onClick={shareFile}
             />
             <SocialButton
               icon={

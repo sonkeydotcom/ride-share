@@ -28,14 +28,14 @@ const RatesInfo = () => {
         Fees vary depending on the type of vehicle, time of day, and weather
         conditions.
       </p>
-      <div className="flex flex-wrap justify-between my-4">
+      <div className="flex flex-col md:flex-row flex-wrap justify-between my-4">
         {/* Changed flex-row to flex-wrap */}
         {rate.map(
           (
             rateItem,
             index // Renamed rate to rateItem for clarity
           ) => (
-            <div key={index} className="w-1/2 p-2 my-2">
+            <div key={index} className="w-full md:w-1/2 p-2 my-2">
               {/* Changed w-2/2 to w-1/2 */}
               {rateItem.icon}
               <h1 className="font-bold text-black my-2 capitalize">
